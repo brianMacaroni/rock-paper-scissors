@@ -14,30 +14,28 @@ function play(playerSelection, computerSelection) {
 
   //compare to see if there is a draw
   if (input == computerSelection) {
-    return console.log(
-      `Draw. Your choice: ${input}, and computer choice: ${computerSelection}`
-    );
+    return `Draw. Your choice: ${input}, and computer choice: ${computerSelection}`;
   }
 
   //compare to see who wins or loses
   switch (input) {
     case "rock":
       if (computerSelection == "scissors") {
-        return console.log(`You win! ${input} beats ${computerSelection}`);
+        return `You win! ${input} beats ${computerSelection}`;
       } else {
-        return console.log(`You lose! ${input} loses to ${computerSelection}`);
+        return `You lose! ${input} loses to ${computerSelection}`;
       }
     case "paper":
       if (computerSelection == "rock") {
-        return console.log(`You win! ${input} beats ${computerSelection}`);
+        return `You win! ${input} beats ${computerSelection}`;
       } else {
-        return console.log(`You lose! ${input} loses to ${computerSelection}`);
+        return `You lose! ${input} loses to ${computerSelection}`;
       }
     case "scissors":
       if (computerSelection == "paper") {
-        return console.log(`You win! ${input} beats ${computerSelection}`);
+        return `You win! ${input} beats ${computerSelection}`;
       } else {
-        return console.log(`You lose! ${input} loses to ${computerSelection}`);
+        return `You lose! ${input} loses to ${computerSelection}`;
       }
   }
 }
