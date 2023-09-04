@@ -1,6 +1,9 @@
 //declare array of choices and variable to hold robot choice
 const choices = ["rock", "paper", "scissors"];
-const compChoice = getComputerChoice();
+let compChoice = getComputerChoice();
+let userChoice = prompt("Choose rock, paper, or scissors: ");
+let userPoints = 0;
+let compPoints = 0;
 
 //function to get random choice from array
 function getComputerChoice() {
@@ -21,24 +24,50 @@ function play(playerSelection, computerSelection) {
   switch (input) {
     case "rock":
       if (computerSelection == "scissors") {
+        userPoints++;
         return `You win! ${input} beats ${computerSelection}`;
       } else {
+        compPoints++;
         return `You lose! ${input} loses to ${computerSelection}`;
       }
     case "paper":
       if (computerSelection == "rock") {
+        userPoints++;
         return `You win! ${input} beats ${computerSelection}`;
       } else {
+        compPoints++;
         return `You lose! ${input} loses to ${computerSelection}`;
       }
     case "scissors":
       if (computerSelection == "paper") {
+        userPoints++;
         return `You win! ${input} beats ${computerSelection}`;
       } else {
+        compPoints++;
         return `You lose! ${input} loses to ${computerSelection}`;
       }
   }
 }
 
-console.log(play("scissors", compChoice));
-console.log(compChoice);
+//game function
+function game() {
+  let gameEnd = false;
+  //loop until user or robot gets 5 points
+  while (gameEnd == false) {
+    console.log(play(userChoice, compChoice));
+    console.log(`User Points: ${userPoints}`);
+    console.log(`Computer Points: ${compPoints}`);
+
+    if (userPoints == 5) {
+      console.log("You beat the cyborg!");
+      return (gameEnd = true);
+    } else if (compPoints == 5) {
+      console.log("The cyborgs take over the world!");
+      return (gameEnd = true);
+    }
+    userChoice = prompt("Choose rock, paper, or scissors: ");
+    compChoice = getComputerChoice();
+  }
+}
+
+game();
