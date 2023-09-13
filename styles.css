@@ -11,3 +11,9 @@
   justify-content: space-between;
   font-size: xx-large;
 }
+
+.playagain {
+  display: flex;
+  justify-content: center;
+  margin: 50px;
+}

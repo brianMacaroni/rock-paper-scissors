@@ -7,8 +7,8 @@ let compPoints = 0;
 
 //function to get random choice from array
 function getComputerChoice() {
-  let ye = Math.floor(Math.random() * 3);
-  return choices[ye];
+  let randNum = Math.floor(Math.random() * 3);
+  return choices[randNum];
 }
 
 let winOrLose;
@@ -25,32 +25,25 @@ function play(playerSelection, computerSelection) {
   switch (playerSelection) {
     case "rock":
       if (computerSelection == "scissors") {
-        winOrLose = "win";
-        break;
+        return (winOrLose = "win");
       } else {
-        winOrLose = "lose";
-        break;
+        return (winOrLose = "lose");
       }
     case "paper":
       if (computerSelection == "rock") {
-        winOrLose = "win";
-        break;
+        return (winOrLose = "win");
       } else {
-        winOrLose = "lose";
-        break;
+        return (winOrLose = "lose");
       }
     case "scissors":
       if (computerSelection == "paper") {
-        winOrLose = "win";
-        break;
+        return (winOrLose = "win");
       } else {
-        winOrLose = "lose";
-        break;
+        return (winOrLose = "lose");
       }
   }
-  return winOrLose;
 }
-let gameEnd;
+
 //game function
 function game() {
   //loop until user or robot gets 5 points
@@ -72,14 +65,47 @@ function game() {
 
   if (userPoints === 5) {
     console.log("You beat the cyborg!");
-    return (gameEnd = true);
+    buttonDisableEvent();
+    createPlayButton();
   } else if (compPoints === 5) {
     console.log("The cyborgs take over the world!");
-    return (gameEnd = true);
+    buttonDisableEvent();
+    createPlayButton();
   }
   console.log("User Points: " + userPoints);
   console.log("Robot Points: " + compPoints);
   compChoice = getComputerChoice();
+}
+
+function buttonDisableEvent() {
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
+}
+
+function buttonEnableEvent() {
+  buttons.forEach((button) => {
+    button.disabled = false;
+  });
+}
+
+function createPlayButton() {
+  const playbutton = document.createElement("button");
+  playbutton.classList.add("playbutton");
+  playbutton.textContent = "Play Again";
+  const playagain = document.querySelector(".playagain");
+  playagain.appendChild(playbutton);
+
+  playbutton.addEventListener("click", () => {
+    userPoints = 0;
+    compPoints = 0;
+    buttonEnableEvent();
+    document.getElementById("userscore").textContent =
+      "User Score: " + userPoints;
+    document.getElementById("robotscore").textContent =
+      "Robot Score: " + compPoints;
+    playagain.removeChild(playbutton);
+  });
 }
 
 const buttons = document.querySelectorAll("button");
@@ -96,9 +122,6 @@ buttons.forEach((button) => {
       userChoice = "scissors";
     }
     play(userChoice, compChoice);
-    console.log(userChoice);
-    console.log(compChoice);
-    console.log(winOrLose);
     game();
   });
 });
