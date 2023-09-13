@@ -1,0 +1,13 @@
+#container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 100px 20px;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.choices {
+  display: flex;
+  justify-content: space-between;
+  font-size: xx-large;
+}
