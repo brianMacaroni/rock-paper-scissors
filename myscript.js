@@ -12,10 +12,14 @@ function getComputerChoice() {
 }
 
 let winOrLose;
+const userimg = document.createElement("img");
+const robotimg = document.createElement("img");
 //function to compare user choice and robot choice
 function play(playerSelection, computerSelection) {
-  document.getElementById("userchoice").textContent = playerSelection;
-  document.getElementById("robotchoice").textContent = computerSelection;
+  userimg.src = `img/${playerSelection}.png`;
+  robotimg.src = `img/${computerSelection}.png`;
+  document.getElementById("userchoice").appendChild(userimg);
+  document.getElementById("robotchoice").appendChild(robotimg);
   //compare to see if there is a draw
   if (playerSelection === computerSelection) {
     return (winOrLose = "draw");
@@ -42,8 +46,11 @@ function play(playerSelection, computerSelection) {
         return (winOrLose = "lose");
       }
   }
+  document.getElementById("userchoice").removeChild(userimg);
+  document.getElementById("robotchoice").removeChild(robotimg);
 }
-
+const hurtimg = document.createElement("img");
+hurtimg.src = "img/doom-hit.gif";
 //game function
 function game() {
   //loop until user or robot gets 5 points
@@ -93,7 +100,7 @@ function createPlayButton() {
   const playbutton = document.createElement("button");
   playbutton.classList.add("playbutton");
   playbutton.textContent = "Play Again";
-  const playagain = document.querySelector(".playagain");
+  const playagain = document.querySelector("#playagain");
   playagain.appendChild(playbutton);
 
   playbutton.addEventListener("click", () => {
@@ -105,6 +112,8 @@ function createPlayButton() {
     document.getElementById("robotscore").textContent =
       "Robot Score: " + compPoints;
     playagain.removeChild(playbutton);
+    document.getElementById("userchoice").removeChild(userimg);
+    document.getElementById("robotchoice").removeChild(robotimg);
   });
 }
 
@@ -125,9 +134,3 @@ buttons.forEach((button) => {
     game();
   });
 });
-
-const container = document.querySelector("#container");
-container.setAttribute(
-  "style",
-  "color: blue; background: pink; border-color: black; border-style: solid;"
-);

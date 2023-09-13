@@ -1,19 +1,64 @@
-#container {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 20px 100px 20px;
-  margin-left: 200px;
-  margin-right: 200px;
+body {
+  font-family: "Press Start 2P", arial, serif;
+  background-image: url(https://preview.redd.it/yij7pxyuyzp81.jpg?width=2560&format=pjpg&auto=webp&s=d43665445ff68395ba5f2941c0419c88a6395262);
+  color: white;
 }
 
-.choices {
-  display: flex;
-  justify-content: space-between;
-  font-size: xx-large;
-}
-
-.playagain {
+.top {
   display: flex;
   justify-content: center;
-  margin: 50px;
+  align-items: center;
+  padding: 20px;
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+#userpic,
+#robotpic {
+  margin-right: 150px;
+  margin-bottom: 50px;
+}
+
+.leftdiv,
+.rightdiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+#container {
+  display: flex;
+  justify-content: center;
+}
+
+#playagain {
+  display: flex;
+  justify-content: center;
+}
+
+.bottom,
+.weapons {
+  display: flex;
+  justify-content: center;
+}
+
+.weapons {
+  margin-top: 110px;
+  font-size: 25px;
+}
+
+#rock,
+#paper,
+#scissors {
+  background-color: black;
+  border: black;
+  margin: 8px;
+}
+
+.playing {
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1rem #ffc600;
 }
