@@ -49,8 +49,7 @@ function play(playerSelection, computerSelection) {
   document.getElementById("userchoice").removeChild(userimg);
   document.getElementById("robotchoice").removeChild(robotimg);
 }
-const hurtimg = document.createElement("img");
-hurtimg.src = "img/doom-hit.gif";
+let wl;
 //game function
 function game() {
   //loop until user or robot gets 5 points
@@ -71,13 +70,17 @@ function game() {
   }
 
   if (userPoints === 5) {
+    wl = true;
     console.log("You beat the cyborg!");
     buttonDisableEvent();
     createPlayButton();
+    createCongrats();
   } else if (compPoints === 5) {
+    wl = false;
     console.log("The cyborgs take over the world!");
     buttonDisableEvent();
     createPlayButton();
+    createCongrats();
   }
   console.log("User Points: " + userPoints);
   console.log("Robot Points: " + compPoints);
@@ -95,11 +98,41 @@ function buttonEnableEvent() {
     button.disabled = false;
   });
 }
+const winlose = document.querySelector(".winlose");
+const congrats = document.createElement("div");
+
+const robotpic = document.getElementById("robotpic");
+const robotpic1 = document.getElementById("img2");
+const userpic = document.getElementById("userpic");
+const userpic1 = document.getElementById("img1");
+
+function createCongrats() {
+  const robotpic = document.getElementById("robotpic");
+  const robotpic1 = document.getElementById("img2");
+  const userpic = document.getElementById("userpic");
+  const userpic1 = document.getElementById("img1");
+  const newimg = document.createElement("img");
+  if (wl === true) {
+    congrats.textContent = "You beat the cyborg!";
+    newimg.classList.add("content");
+    newimg.src = "img/doom_hurt.gif";
+    robotpic.removeChild(robotpic1);
+    robotpic.appendChild(newimg);
+  } else {
+    congrats.textContent = "The cyborg take over the world!";
+    newimg.classList.add("content");
+    newimg.src = "img/doom_hurt.gif";
+    userpic.removeChild(userpic1);
+    userpic.appendChild(newimg);
+  }
+  winlose.appendChild(congrats);
+}
 
 function createPlayButton() {
   const playbutton = document.createElement("button");
   playbutton.classList.add("playbutton");
   playbutton.textContent = "Play Again";
+
   const playagain = document.querySelector("#playagain");
   playagain.appendChild(playbutton);
 
@@ -114,7 +147,22 @@ function createPlayButton() {
     playagain.removeChild(playbutton);
     document.getElementById("userchoice").removeChild(userimg);
     document.getElementById("robotchoice").removeChild(robotimg);
+    winlose.removeChild(congrats);
+    originalImage();
   });
+}
+
+const userimg2 = document.createElement("img");
+const robotimg2 = document.createElement("img");
+function originalImage() {
+  userpic.removeChild(userpic.firstElementChild);
+  robotpic.removeChild(robotpic.firstElementChild);
+  userimg2.src = "img/grin-doomguy.gif";
+  userimg2.id = "img1";
+  userpic.appendChild(userimg2);
+  robotimg2.src = "img/doomguy-robot.gif";
+  robotimg2.id = "img2";
+  robotpic.appendChild(robotimg2);
 }
 
 const buttons = document.querySelectorAll("button");
@@ -132,5 +180,14 @@ buttons.forEach((button) => {
     }
     play(userChoice, compChoice);
     game();
+  });
+  button.addEventListener("mouseover", () => {
+    button.setAttribute(
+      "style",
+      "background-color:black; transform: scale(1.1); border-color: #ffc600; box-shadow: 0 0 1rem #ffc600;"
+    );
+  });
+  button.addEventListener("mouseout", () => {
+    button.setAttribute("style", "background-color:;");
   });
 });

@@ -15,8 +15,19 @@ body {
 
 #userpic,
 #robotpic {
-  margin-right: 150px;
-  margin-bottom: 50px;
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+
+#img1,
+#img2,
+.content {
+  height: 200px;
+  width: 200px;
+}
+
+#img1 {
+  padding-right: 30px;
 }
 
 .leftdiv,
@@ -28,7 +39,8 @@ body {
   width: 40%;
 }
 
-#container {
+#container,
+.footer {
   display: flex;
   justify-content: center;
 }
@@ -39,22 +51,35 @@ body {
 }
 
 .bottom,
-.weapons {
+.weapons,
+.winlose,
+#ye {
   display: flex;
   justify-content: center;
 }
 
+.winlose,
+#ye {
+  padding: 10px;
+}
+
 .weapons {
-  margin-top: 110px;
+  margin-top: 90px;
   font-size: 25px;
 }
 
 #rock,
 #paper,
 #scissors {
-  background-color: black;
-  border: black;
   margin: 8px;
+  border: 0.4rem solid black;
+  border-radius: 1.5rem;
+  margin: 1rem;
+  padding: 1rem 0.5rem;
+  transition: all 0.07s ease;
+  width: 10rem;
+  background: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 0.5rem black;
 }
 
 .playing {
